@@ -19,13 +19,8 @@ class OTPFragment: BaseFragment<FragmentOTPBinding, PhoneAuthViewModel>() {
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        viewModel.message.observe(viewLifecycleOwner, Observer {
-            it.getContentIfNotHandled().let {
-                if (it != null)
-                    Toast.makeText(context, it , Toast.LENGTH_SHORT).show()
-
-            }
-
+        viewModel.progressBarVisible.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.visibility = it
         })
     }
 }

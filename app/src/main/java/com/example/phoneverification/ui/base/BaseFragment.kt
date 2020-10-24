@@ -29,7 +29,6 @@ abstract class BaseFragment <T: ViewDataBinding, VM: ViewModel>: Fragment(){
             false
         )
         viewModel = ViewModelProvider(requireActivity()).get(getViewModel())
-
         return binding.root
     }
 

@@ -3,6 +3,7 @@ package com.example.phoneverification.data
 import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
+import android.opengl.Visibility
 import android.util.Log
 import android.util.Patterns
 import android.view.View
@@ -29,6 +30,9 @@ class PhoneAuthViewModel(private val context: Context) : ViewModel(), Observable
     private lateinit var credential: PhoneAuthCredential
     private var verificationFailed:Boolean = false
 
+
+    var progressBarVisible: MutableLiveData<Int> = MutableLiveData<Int>(View.GONE)
+
     @Bindable
     val phoneNumber = MutableLiveData<String>()
 
@@ -51,11 +55,13 @@ class PhoneAuthViewModel(private val context: Context) : ViewModel(), Observable
         view.findNavController().navigate(action)
     }
 
+
+
     private var callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         override fun onVerificationCompleted(p0: PhoneAuthCredential) {
             Log.i("NUM_VERIFICATION_STATE", "PhoneNumberVerificationState.SUCESS")
-            validationMessage.value = Event("OTP Verification done")
+            validationMessage.value = Event("OTP Verification done automatically")
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
@@ -127,9 +133,11 @@ class PhoneAuthViewModel(private val context: Context) : ViewModel(), Observable
 
 
     fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential){
+        progressBarVisible.value = View.VISIBLE
         fireBaseAuth.signInWithCredential(credential).addOnCompleteListener(){task ->
             if (task.isSuccessful){
                 validationMessage.value = Event("OTP verification Done")
+               progressBarVisible.value = View.GONE
             }
             else{
                 Log.i("Error", task.exception.toString())
