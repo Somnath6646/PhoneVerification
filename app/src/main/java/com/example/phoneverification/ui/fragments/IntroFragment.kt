@@ -3,6 +3,8 @@ package com.example.phoneverification.ui.fragments
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.phoneverification.R
 import com.example.phoneverification.data.PhoneAuthViewModel
 import com.example.phoneverification.databinding.FragmentIntroBinding
@@ -19,5 +21,9 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, PhoneAuthViewModel>() {
         super.onActivityCreated(savedInstanceState)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
+        binding.proceed.setOnClickListener {
+            val action = IntroFragmentDirections.actionIntroFragmentToPhoneNumberFragment()
+            findNavController().navigate(action)
+        }
     }
 }

@@ -94,7 +94,6 @@
                         android:background="@drawable/btn_style"
                         android:textColor="@android:color/white"
                         android:paddingRight="70dp"
-                        android:onClick="@{()->viewmodel.goToPhoneNumberFragment(proceed)}"
                         />
                 </LinearLayout>
 

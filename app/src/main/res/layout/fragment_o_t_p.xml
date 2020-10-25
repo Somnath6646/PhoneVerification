@@ -116,7 +116,6 @@
                         android:textColor="@android:color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="@{()-> viewModel.verifyPhoneNumberWithCode(proceedOtp)}"
                         android:text="Proceed" />
                 </LinearLayout>
 

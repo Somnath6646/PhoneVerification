@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.phoneverification.R
+import com.example.phoneverification.data.FirebaseAuthSource
 import com.example.phoneverification.data.PhoneAuthViewModel
 import com.example.phoneverification.data.PhoneAuthViewModelFactory
 import kotlinx.android.synthetic.main.fragment_intro.*
@@ -22,7 +23,8 @@ class PhoneAuthActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val factory = PhoneAuthViewModelFactory(this)
+        val firebaseAuthSource = FirebaseAuthSource()
+        val factory = PhoneAuthViewModelFactory(firebaseAuthSource)
         viewModel = ViewModelProvider(this,factory).get(PhoneAuthViewModel::class.java)
         viewModel.message.observe(this, Observer {
             it.getContentIfNotHandled().let {

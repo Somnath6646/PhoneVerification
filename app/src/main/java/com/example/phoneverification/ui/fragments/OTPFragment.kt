@@ -1,6 +1,7 @@
 package com.example.phoneverification.ui.fragments
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.phoneverification.R
@@ -19,8 +20,11 @@ class OTPFragment: BaseFragment<FragmentOTPBinding, PhoneAuthViewModel>() {
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        viewModel.progressBarVisible.observe(viewLifecycleOwner, Observer {
+        viewModel.progressBarVisible_OTP.observe(viewLifecycleOwner, Observer {
             binding.progressBar.visibility = it
         })
+        binding.proceedOtp.setOnClickListener {
+            viewModel.verifyOTP()
+        }
     }
 }

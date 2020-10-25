@@ -84,6 +84,13 @@
                         android:gravity="bottom|center">
 
 
+                        <ProgressBar
+                            android:id="@+id/progressBarNumberVerification"
+                            android:visibility="gone"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -100,7 +107,6 @@
                         android:textColor="@android:color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="@{()-> viewModel.verify(verify)}"
                         android:text="Verify" />
                     </LinearLayout>
                 </LinearLayout>
